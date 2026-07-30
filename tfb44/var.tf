@@ -7,7 +7,7 @@ variable "insttype" {
 }
 
 variable "sg" {
-   default = "sg-0eae0d103615165a6"
+   default = "sg-0900552f2cde33080"
 }
 
 variable "kp" {
