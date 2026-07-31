@@ -1,5 +1,5 @@
 variable "amiid" {
-    default = "ami-004f790b835b26145"
+    default = "ami-00d2dbb426772b03a"
 }
 
 variable "insttype" {
@@ -7,7 +7,7 @@ variable "insttype" {
 }
 
 variable "sg" {
-   default = "sg-0eae0d103615165a6"
+   default = "sg-0900552f2cde33080"
 }
 
 variable "kp" {

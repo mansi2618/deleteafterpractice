@@ -16,3 +16,4 @@ resource "aws_instance"  "webserver" {
     }
     count = 2 
 }
+
