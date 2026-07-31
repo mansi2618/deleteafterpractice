@@ -429,7 +429,7 @@ folder/XZ (Best compression): tar -cJvf etc.tar.xz etc
  tar -xJvf etc.tar.xz 
 
 ```
-
+```
 Scheduler - to invoke recurring events on daily or periodic basics is nothing but scheduler. 
 
 periodic - repetative and recurring 
@@ -462,4 +462,98 @@ on 15 july at 1:30 am i want tar -cJvf etc.tar.xz etc
    23  crontab -r 
    24  crontab -l
    25  crontab -r -u ubuntu
- 
+ ```
+```
+search filter utilities 
+
+grep "nologin" /etc/passwd  - filter out word from mentioned  
+wc /etc/passwd - you extract number of word , number of unique characters and number of sentences.
+cat /etc/passwd - to read file 
+sort /etc/passwd - alphabetically file sort
+sort -r /etc/passwd - in reverse alphabetical order file will be sorted 
+sort -n numbers.txt - will order the whole file output in a numerical order.
+
+uniq filename - unique characters are filtered out
+uniq -c filename - only unique characters and number of counts they are used are filtered out 
+
+cat /etc/passwd | uniq -c  - to execute two process in one command we use "|" = pipe.
+
+   1  locate passwd
+    2  apt install plocate
+    3  clear
+    4  locate passwd
+    5  locate passwd | grep "passwd"
+    6  #locate passwd | grep "passwd"
+    7  locate shadow | grep "etc"
+    8  locate shadow
+    9  locate sudoers
+   10  clear
+   11  find / -name sudoers
+   12  find / -name sudoers -type file
+   13  find / -name sudoers -type f
+   14  find / -name crond -type f
+   15  find / -name cron -type f
+   16  find / -name lib -type d
+   17  find / -name *.sh -type f
+   18  find . -iname passwd
+   19  find / -iname passwd
+   20  find / -size 10M
+   21  find / -size +100M
+   22  find / -size 1G
+   23  find / -size +1G
+   24  find / -size -1G
+   25  find / -size -100M
+   26  find . -mtime 2
+   27  find / -mtime 2
+   28  find / -mtime -2
+   29  find / -mtime +2O
+   30  find / -mtime +2M
+   31  find / -mtime +2m
+   32  find / -mtime -2m
+   33  find / -mmin -2m
+   34  find / -mmin -2
+   35  find / -mmin +20
+   36  find / -mmin 20
+   37  history
+
+```
+
+```
+process management commands 
+top 
+htop 
+ 1207  ps-elf
+ 1208  ps -elf
+ 1209  top
+ 1210  ps -elf
+ 1211  ps
+ 1212  ps -elf
+ 1213  ps -e
+ 1214  ps aux
+ apt install nginx -y
+    2  systemctl status nginx
+    3  ps -elf | grep "nginx"
+    4  top
+    5  systemctl status nginx
+    6  systemctl stop nginx
+    7  systemctl status nginx
+    8  systemctl start nginx
+    9  systemctl status nginx
+   10  systemctl restart nginx
+   11  systemctl status nginx
+   12  systemctl reload nginx
+   13  systemctl status nginx
+   14  kill -9 2088
+   15  systemctl status nginx
+   16  systemctl start nginx
+   17  systemctl status nginx
+   18  #kill -9 2088
+   19  ps -elf | grep "nginx"
+   20  kill -9 2111
+   21  systemctl status nginx
+   22  ps -elf | grep "nginx"
+   23  systemctl start nginx
+   24  top
+   25  kill --help
+   26  history
+```

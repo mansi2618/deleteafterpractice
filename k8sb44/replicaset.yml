@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 apiVersion:  apps/v1 
 kind: ReplicaSet
 metadata: 
@@ -19,3 +20,27 @@ spec:
                 image: nginx:latest #containers images that will be used to create pod
                 ports:
                   - containerPort: 80 #container port 
+=======
+apiVersion:  apps/v1 
+kind: ReplicaSet
+metadata: 
+    name: webapprs
+    labels:
+       app:  webapprs    
+spec:
+    replicas: 3
+    selector: 
+      matchLabels:
+         app: nginxpodrs
+    template:
+        metadata:  #tags , assigning metadata to pod 
+            labels:
+                 app: nginxpodrs
+        spec:  #pod specifications.
+          containers:
+              - name: nginxpodrs
+                image: nginx:latest #containers images that will be used to create pod
+                ports:
+                  - containerPort: 80 #container port 
+                    
+>>>>>>> ebe39c9096da146cd0cddb077fdea3d67ad2a3a8

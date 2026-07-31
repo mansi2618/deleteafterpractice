@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 apiVersion: v1 
 kind: ReplicationController
 metadata: 
@@ -18,3 +19,26 @@ spec:
                 image: nginx:latest #containers images that will be used to create pod
                 ports:
                   - containerPort: 80 #container port 
+=======
+apiVersion: v1 
+kind: ReplicationController
+metadata: 
+    name: webapprc 
+    labels:
+       app:  webapprc    
+spec:
+    replicas: 3
+    selector: 
+         app: nginxpodrc
+    template:
+        metadata:  #tags , assigning metadata to pod 
+            labels:
+                 app: nginxpodrc  
+        spec:  #pod specifications.
+          containers:
+              - name: nginxpodrc
+                image: nginx:latest #containers images that will be used to create pod
+                ports:
+                  - containerPort: 80 #container port 
+                    
+>>>>>>> ebe39c9096da146cd0cddb077fdea3d67ad2a3a8
