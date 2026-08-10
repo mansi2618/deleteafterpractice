@@ -1,6 +1,6 @@
 variable "amiid" {
 
-    default = "ami-004f790b835b26145"
+    default = "ami-035827357e3c7e810"
 
 }
 
