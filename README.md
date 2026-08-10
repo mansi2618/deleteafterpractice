@@ -66,23 +66,7 @@ Apache's `FallbackResource`. That way both the health check (`/`) and the routed
   (`HOME` / `LAPTOP` / `MOBILE`) per template.
 - Name them: `home-lt`, `laptop-lt`, `mobile-lt`.
 
-#!/bin/bash
-dnf install -y httpd
-echo '<h1>This is Laptop</h1>' > /var/www/html/index.html
-echo 'FallbackResource /index.html' > /etc/httpd/conf.d/fallback.conf
-systemctl enable --now httpd
 
-#!/bin/bash
-dnf install -y httpd
-
-# Get the private IP address dynamically
-PRIVATE_IP=$(hostname -I | awk '{print $1}')
-
-# Create index.html with the private IP included
-echo "<h1>This is Home </h1><p>Server Private IP: $PRIVATE_IP</p>" > /var/www/html/index.html
-
-echo 'FallbackResource /index.html' > /etc/httpd/conf.d/fallback.conf
-systemctl enable --now httpd
 
 
 ### 3.3 Target groups
@@ -101,7 +85,7 @@ systemctl enable --now httpd
 - **Scheme:** Internet-facing, IPv4
 - **Subnets:** 2+ public subnets in different AZs
 - **Security group:** `alb-sg`
-- **Listener:** HTTP : 80 → default action **Forward to `home-tg`**
+- **Listener:** HTTP : 80 → default action **Forward to `home-tg` , `laptop-tg` , `mobile-tg` **
 
 ### 3.5 Listener rules
 *(Select the ALB → Listeners → the :80 listener → Manage rules → Add rules)*
@@ -248,7 +232,7 @@ AMI=$(aws ssm get-parameter \
   --query Parameter.Value --output text --region $REGION)
 ```
 
-User data:
+User data if your using amazon linux ami:
 ```bash
 #!/bin/bash
 dnf install -y httpd
@@ -267,16 +251,36 @@ AMI=$(aws ssm get-parameter \
 ```
 
 User data:
-```bash
+```
 #!/bin/bash
 apt-get update -y
 apt-get install -y apache2
 echo '<h1>This is HOME</h1>' > /var/www/html/index.html
+echo "Served by: $(hostname)" >> /var/www/html/index.html
 echo 'FallbackResource /index.html' > /etc/apache2/conf-available/fallback.conf
 a2enconf fallback
-systemctl enable --now apache2
+systemctl restart apache2
 ```
-
+```
+#!/bin/bash
+apt-get update -y
+apt-get install -y apache2
+echo '<h1>This is LAPTOP</h1>' > /var/www/html/index.html
+echo "Served by: $(hostname)" >> /var/www/html/index.html
+echo 'FallbackResource /index.html' > /etc/apache2/conf-available/fallback.conf
+a2enconf fallback
+systemctl restart apache2
+```
+```
+#!/bin/bash
+apt-get update -y
+apt-get install -y apache2
+echo '<h1>This is MOBILE</h1>' > /var/www/html/index.html
+echo "Served by: $(hostname)" >> /var/www/html/index.html
+echo 'FallbackResource /index.html' > /etc/apache2/conf-available/fallback.conf
+a2enconf fallback
+systemctl restart apache2
+```
 Key differences:
 
 - `apt-get` instead of `dnf`.
