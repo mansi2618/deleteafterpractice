@@ -1,17 +1,17 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-south-1"
   profile = "configs"
 } 
 
 #Partitionkey = LockID
 terraform {
     backend "s3" {
-        bucket = "cbz-b44"
+        bucket = "cbz-b123"
         key = "terraform.tfstate"
         dynamodb_table = "b44"
-        region = "us-east-1"
+        region = "ap-south-1"
         profile = "configs"
-        shared_credentials_files = ["/home/anup/.aws/credentials"]
+        shared_credentials_files = ["/home/mansi/.aws/credentials"]
     }
 }
 

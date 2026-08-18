@@ -2,7 +2,7 @@
 
 module "ec2" {
   source = "/root/deleteafterpractice/tfb44/module/resource/ec2"
-  amiid = "ami-0bdc7d025135d7b49"
+  amiid = "ami-035827357e3c7e810"
   insttype = "t3.micro"
   kp = "key"
   apiterm = false 
@@ -14,6 +14,6 @@ module "vpc" {
     source = "/root/deleteafterpractice/tfb44/module/resource/vpc"
     this_cidr =  "10.0.0.0/16" 
     this_subcidr = "10.0.0.0/24"
-    this_az = "us-east-1a"
+    this_az = "ap-south-1a"
 
 }
